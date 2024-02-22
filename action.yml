@@ -1,4 +1,4 @@
-name: 'Setup Android SDK Tools'
+name: 'Setup Android SDK'
 author: 'Android-Actions'
 description: 'Setup the Android SDK Tools and add them to the path'
 
