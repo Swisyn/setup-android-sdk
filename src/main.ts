@@ -7,6 +7,8 @@ import * as os from 'os'
 
 function getVersionShort(versionLong: string): string {
   switch (versionLong) {
+    case '11076708':
+      return '12.0'
     case '10406996':
       return '11.0'
     case '9862592':
@@ -21,7 +23,6 @@ function getVersionShort(versionLong: string): string {
       return versionLong
   }
 }
-
 const VERSION_LONG = core.getInput('cmdline-tools-version', {
   trimWhitespace: true
 })
@@ -136,8 +137,14 @@ async function run(): Promise<void> {
       // Error: Could not find or load main class Files
 
       const newSDKLocation = ANDROID_SDK_ROOT.replace(/\s/gi, '-')
+
+      let sdkLocation = path.dirname(newSDKLocation)
+
+      core.debug(`removing ${sdkLocation}`)
+      fs.rmSync(sdkLocation, { recursive: true, force: true });
+
       core.debug(`moving ${ANDROID_SDK_ROOT} to ${newSDKLocation}`)
-      fs.mkdirSync(path.dirname(newSDKLocation), {recursive: true})
+      fs.mkdirSync(sdkLocation, {recursive: true})
 
       // intentionally using fs.renameSync,
       // because it doesn't move across drives
@@ -175,8 +182,6 @@ async function run(): Promise<void> {
   core.exportVariable('ANDROID_HOME', ANDROID_SDK_ROOT)
   core.exportVariable('ANDROID_SDK_ROOT', ANDROID_SDK_ROOT)
   core.exportVariable('ANDROID_SDK_HOME', ANDROID_SDK_ROOT)
-  core.exportVariable('ANDROID_EMULATOR_HOME', path.join(ANDROID_SDK_ROOT, 'emulator'))
-  core.exportVariable('PLATFORM_TOOLS', path.join(ANDROID_SDK_ROOT, 'platform-tools'))
 
   core.addPath(path.dirname(sdkManagerExe))
   core.addPath(path.join(ANDROID_SDK_ROOT, 'emulator'))
@@ -188,6 +193,7 @@ async function run(): Promise<void> {
   core.debug('add matchers')
   // eslint-disable-next-line no-console
   console.log(`##[add-matcher]${path.join(__dirname, '..', 'matchers.json')}`)
+  console.log(`## ANDROID_SDK_ROOT location is ${ANDROID_SDK_ROOT}`);
 }
 
 run()
