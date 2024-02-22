@@ -29,7 +29,7 @@ steps:
   uses: actions/setup-java@v3
   with:
     java-version: '17'
-    distribution: 'temurin'
+    distribution: 'zulu'
 
 - name: Setup Android SDK
   uses: Swisyn/setup-android-sdk@v1
