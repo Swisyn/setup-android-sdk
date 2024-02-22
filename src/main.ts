@@ -174,8 +174,15 @@ async function run(): Promise<void> {
   core.setOutput('ANDROID_COMMANDLINE_TOOLS_VERSION', VERSION_LONG)
   core.exportVariable('ANDROID_HOME', ANDROID_SDK_ROOT)
   core.exportVariable('ANDROID_SDK_ROOT', ANDROID_SDK_ROOT)
+  core.exportVariable('ANDROID_SDK_HOME', ANDROID_SDK_ROOT)
+  core.exportVariable('ANDROID_EMULATOR_HOME', path.join(ANDROID_SDK_ROOT, 'emulator'))
+  core.exportVariable('PLATFORM_TOOLS', path.join(ANDROID_SDK_ROOT, 'platform-tools'))
 
   core.addPath(path.dirname(sdkManagerExe))
+  core.addPath(path.join(ANDROID_SDK_ROOT, 'emulator'))
+  core.addPath(path.join(ANDROID_SDK_ROOT, 'tools'))
+  core.addPath(path.join(ANDROID_SDK_ROOT, 'tools/bin'))
+  core.addPath(path.join(ANDROID_SDK_ROOT, 'cmdline-tools/latest/bin'))
   core.addPath(path.join(ANDROID_SDK_ROOT, 'platform-tools'))
 
   core.debug('add matchers')
