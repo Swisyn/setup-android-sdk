@@ -36,7 +36,7 @@ const COMMANDLINE_TOOLS_WIN_URL = `https://dl.google.com/android/repository/comm
 const COMMANDLINE_TOOLS_MAC_URL = `https://dl.google.com/android/repository/commandlinetools-mac-${VERSION_LONG}_latest.zip`
 const COMMANDLINE_TOOLS_LIN_URL = `https://dl.google.com/android/repository/commandlinetools-linux-${VERSION_LONG}_latest.zip`
 
-const ANDROID_HOME_SDK_DIR = path.join(os.homedir(), '.android', 'sdk')
+const ANDROID_HOME_SDK_DIR = path.join(os.homedir(), 'Library', 'Android', 'sdk')
 let ANDROID_SDK_ROOT = process.env['ANDROID_SDK_ROOT'] || ANDROID_HOME_SDK_DIR
 
 async function callSdkManager(
@@ -184,10 +184,10 @@ async function run(): Promise<void> {
   core.exportVariable('ANDROID_SDK_HOME', ANDROID_SDK_ROOT)
 
   core.addPath(path.dirname(sdkManagerExe))
-  core.addPath(path.join(ANDROID_SDK_ROOT, 'emulator'))
+  core.addPath(path.join(ANDROID_SDK_ROOT, 'emulator', 'emulator'))
   core.addPath(path.join(ANDROID_SDK_ROOT, 'tools'))
-  core.addPath(path.join(ANDROID_SDK_ROOT, 'tools/bin'))
-  core.addPath(path.join(ANDROID_SDK_ROOT, 'cmdline-tools/latest/bin'))
+  core.addPath(path.join(ANDROID_SDK_ROOT, 'tools', 'bin'))
+  core.addPath(path.join(ANDROID_SDK_ROOT, 'cmdline-tools', 'latest', 'bin'))
   core.addPath(path.join(ANDROID_SDK_ROOT, 'platform-tools'))
 
   core.debug('add matchers')

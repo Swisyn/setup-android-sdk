@@ -3,7 +3,7 @@
 ![Build & Test](https://github.com/Swisyn/setup-android-sdk/workflows/Build%20&%20Test/badge.svg)
 
 This action sets up the Android SDK tools by:
- - Downloading the SDK commandline tools, if the current version (12.0) is not found in either `$ANDROID_SDK_ROOT` or `$HOME/.android/sdk`.
+ - Downloading the SDK commandline tools, if the current version (12.0) is not found in either `$ANDROID_SDK_ROOT` or `$HOME/Library/Android/sdk`.
  - Accepting the SDK licenses.
  - Installing `tools` and `platform-tools`.
  - Adding `platform-tools` (contains adb) and `cmdline-tools/12.0/bin` (contains sdkmanager) to `$PATH`.
