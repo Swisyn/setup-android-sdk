@@ -184,7 +184,7 @@ async function run(): Promise<void> {
   core.exportVariable('ANDROID_SDK_HOME', ANDROID_SDK_ROOT)
 
   core.addPath(path.dirname(sdkManagerExe))
-  core.addPath(path.join(ANDROID_SDK_ROOT, 'emulator', 'emulator'))
+  core.addPath(path.join(ANDROID_SDK_ROOT, 'emulator'))
   core.addPath(path.join(ANDROID_SDK_ROOT, 'tools'))
   core.addPath(path.join(ANDROID_SDK_ROOT, 'tools', 'bin'))
   core.addPath(path.join(ANDROID_SDK_ROOT, 'cmdline-tools', 'latest', 'bin'))
