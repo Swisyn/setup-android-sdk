@@ -24,7 +24,7 @@ inputs:
     default: 'tools platform-tools'
 
 runs:
-  using: node20
+  using: node16
   main: 'dist/index.js'
 
 branding:
